@@ -1,0 +1,26 @@
+FROM golang:1.16-alpine
+
+WORKDIR /app
+
+# Copy go.mod and go.sum first (for caching)
+COPY go.mod go.sum ./
+
+# Download dependencies (Go modules)
+RUN go mod download
+
+
+COPY . .
+
+RUN go build -o server
+
+EXPOSE 8080
+
+ENV PORT=8080
+ENV REQUEST_ORIGIN=http://host.docker.internal:5000	
+ENV REDIS_HOST=localhost
+ENV POSTGRES_HOST=localhost
+ENV POSTGRES_USER=postgres
+ENV POSTGRES_PASSWORD=postgres
+ENV POSTGRES_DATABASE=postgres
+
+CMD ["./server"]
