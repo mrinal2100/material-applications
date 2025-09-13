@@ -1,0 +1,10 @@
+name: ci-cd
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build: ./DockerFile
+  runs-on: ubuntu-latest
+  steps:
