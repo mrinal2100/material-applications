@@ -1,0 +1,17 @@
+version: '3.7'
+
+services:
+  app:
+    image: mrinal2100/express-app:latest  # Replace with your Docker Hub image
+    container_name: express-app
+    ports:
+      - 3000:3000
+    restart: always  # Always restart the container if it stops
+
+  watchtower:
+    image: containrrr/watchtower
+    container_name: watchtower
+    restart: always
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock  # Required for Watchtower to access Docker
+    command: --interval 30  # Watchtower checks for updates every 30 seconds
