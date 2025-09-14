@@ -5,7 +5,7 @@ services:
     image: mrinal2100/express-app:latest  # Replace with your Docker Hub image
     container_name: express-app
     ports:
-      - 3000:3000
+      - 3000:8080
     restart: always  # Always restart the container if it stops
 
   watchtower:
